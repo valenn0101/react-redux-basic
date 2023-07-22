@@ -1,5 +1,7 @@
 import { connect } from "react-redux";
 
+import field from "../../styles/cancha.svg";
+
 type Player = {
   id: number;
   name: string;
@@ -25,6 +27,7 @@ const Starters: React.FC<PlayersProps> = ({ starters, removePlayer }) => {
             <p>{player.name}</p>
           </article>
         ))}
+        <img src={field} alt="field" />
       </div>
     </section>
   );

@@ -1,3 +1,5 @@
+import "../styles/styles.scss";
+
 import { Provider } from "react-redux";
 
 import Players from "@/components/players";
