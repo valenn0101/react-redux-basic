@@ -14,7 +14,7 @@ const Subtitutes: React.FC<PlayersProps> = ({ subtitutes }) => {
   return (
     <section>
       <h2>Subtitutes</h2>
-      <div className="field">
+      <div className="bench">
         {subtitutes.map(player => (
           <article key={player.id} className="subtitutes">
             <div>
