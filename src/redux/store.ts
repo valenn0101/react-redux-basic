@@ -15,6 +15,13 @@ const initialState = {
 };
 
 const reducerManager = (state = initialState, action: any) => {
+  if (action.type === "ADD_STARTER") {
+    return {
+      ...state,
+      starters: state.starters.concat(action.payload),
+      players: state.players.filter(player => player.id !== action.payload.id),
+    };
+  }
   return state;
 };
 

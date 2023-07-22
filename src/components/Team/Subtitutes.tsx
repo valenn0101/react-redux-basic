@@ -7,7 +7,7 @@ type Player = {
 };
 
 type PlayersProps = {
-  subtitutes: Player[];
+  substitutes: Player[];
 };
 
 const Subtitutes: React.FC<PlayersProps> = ({ substitutes }) => {

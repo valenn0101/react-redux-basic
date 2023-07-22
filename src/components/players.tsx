@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { Dispatch } from "redux";
 
 type Player = {
   id: number;
@@ -8,9 +9,15 @@ type Player = {
 
 type PlayersProps = {
   players: Player[];
+  addSubtitute: (player: Player) => void;
+  addStarter: (player: Player) => void;
 };
 
-const Players: React.FC<PlayersProps> = ({ players }) => {
+const Players: React.FC<PlayersProps> = ({
+  players,
+  addStarter,
+  addSubtitute,
+}) => {
   return (
     <section>
       <h2>Players</h2>
@@ -20,8 +27,8 @@ const Players: React.FC<PlayersProps> = ({ players }) => {
             <img src={player.photo} alt={player.name} />
             <h3>{player.name}</h3>
             <div>
-              <button>Starter</button>
-              <button>Substitute</button>
+              <button onClick={() => addStarter(player)}>Starter</button>
+              <button onClick={() => addSubtitute(player)}>Substitute</button>
             </div>
           </article>
         ))}
@@ -36,4 +43,19 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(Players);
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  addStarter(player: Player) {
+    dispatch({
+      type: "ADD_STARTER",
+      payload: player,
+    });
+  },
+  addSubtitute(player: Player) {
+    dispatch({
+      type: "ADD_SUBTITUTE",
+      payload: player,
+    });
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Players);
