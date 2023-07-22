@@ -15,22 +15,42 @@ const initialState = {
 };
 
 const reducerManager = (state = initialState, action: any) => {
-  if (action.type === "ADD_STARTER") {
-    return {
-      ...state,
-      starters: state.starters.concat(action.payload),
-      players: state.players.filter(player => player.id !== action.payload.id),
-    };
+  switch (action.type) {
+    case "ADD_STARTER":
+      return {
+        ...state,
+        starters: [...state.starters, action.payload],
+        players: state.players.filter(
+          player => player.id !== action.payload.id
+        ),
+      };
+    case "ADD_SUBTITUTE":
+      return {
+        ...state,
+        substitutes: [...state.substitutes, action.payload],
+        players: state.players.filter(
+          player => player.id !== action.payload.id
+        ),
+      };
+    case "REMOVE_STARTER":
+      return {
+        ...state,
+        starters: state.starters.filter(
+          player => player.id !== action.payload.id
+        ),
+        players: [...state.players, action.payload],
+      };
+    case "REMOVE_SUBTITUTE":
+      return {
+        ...state,
+        substitutes: state.substitutes.filter(
+          player => player.id !== action.payload.id
+        ),
+        players: [...state.players, action.payload],
+      };
+    default:
+      return state;
   }
-
-  if (action.type === "ADD_SUBTITUTE") {
-    return {
-      ...state,
-      substitutes: state.substitutes.concat(action.payload),
-      players: state.players.filter(player => player.id !== action.payload.id),
-    };
-  }
-  return state;
 };
 
 export default configureStore({

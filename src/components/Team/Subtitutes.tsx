@@ -8,9 +8,10 @@ type Player = {
 
 type PlayersProps = {
   substitutes: Player[];
+  removePlayer: (player: Player) => void;
 };
 
-const Subtitutes: React.FC<PlayersProps> = ({ substitutes }) => {
+const Subtitutes: React.FC<PlayersProps> = ({ substitutes, removePlayer }) => {
   return (
     <section>
       <h2>Subtitutes</h2>
@@ -19,7 +20,7 @@ const Subtitutes: React.FC<PlayersProps> = ({ substitutes }) => {
           <article key={player.id} className="subtitutes">
             <div>
               <img src={player.photo} alt={player.name} />
-              <button>X</button>
+              <button onClick={() => removePlayer(player)}>X</button>
             </div>
             <p>{player.name}</p>
           </article>
@@ -34,5 +35,11 @@ const mapStateToProps = (state: any) => {
     substitutes: state.substitutes,
   };
 };
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    removePlayer: (player: Player) =>
+      dispatch({ type: "REMOVE_SUBTITUTE", payload: player }),
+  };
+};
 
-export default connect(mapStateToProps)(Subtitutes);
+export default connect(mapStateToProps, mapDispatchToProps)(Subtitutes);

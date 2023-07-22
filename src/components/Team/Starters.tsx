@@ -8,9 +8,10 @@ type Player = {
 
 type PlayersProps = {
   starters: Player[];
+  removePlayer: (player: Player) => void;
 };
 
-const Starters: React.FC<PlayersProps> = ({ starters }) => {
+const Starters: React.FC<PlayersProps> = ({ starters, removePlayer }) => {
   return (
     <section>
       <h2>Starters</h2>
@@ -19,7 +20,7 @@ const Starters: React.FC<PlayersProps> = ({ starters }) => {
           <article key={player.id} className="starter">
             <div>
               <img src={player.photo} alt={player.name} />
-              <button>X</button>
+              <button onClick={() => removePlayer(player)}>X</button>
             </div>
             <p>{player.name}</p>
           </article>
@@ -35,4 +36,11 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-export default connect(mapStateToProps)(Starters);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    removePlayer: (player: Player) =>
+      dispatch({ type: "REMOVE_STARTER", payload: player }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Starters);
