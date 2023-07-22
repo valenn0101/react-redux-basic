@@ -12,18 +12,23 @@ const initialState = {
   players: playersList as Player[],
   starters: [],
   substitutes: [],
+  limitStarterPlayers: 11,
 };
 
 const reducerManager = (state = initialState, action: any) => {
   switch (action.type) {
     case "ADD_STARTER":
-      return {
-        ...state,
-        starters: [...state.starters, action.payload],
-        players: state.players.filter(
-          player => player.id !== action.payload.id
-        ),
-      };
+      if (state.starters.length < state.limitStarterPlayers) {
+        return {
+          ...state,
+          starters: [...state.starters, action.payload],
+          players: state.players.filter(
+            player => player.id !== action.payload.id
+          ),
+        };
+      }
+      return state;
+
     case "ADD_SUBTITUTE":
       return {
         ...state,
