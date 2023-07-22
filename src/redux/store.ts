@@ -22,6 +22,14 @@ const reducerManager = (state = initialState, action: any) => {
       players: state.players.filter(player => player.id !== action.payload.id),
     };
   }
+
+  if (action.type === "ADD_SUBTITUTE") {
+    return {
+      ...state,
+      substitutes: state.substitutes.concat(action.payload),
+      players: state.players.filter(player => player.id !== action.payload.id),
+    };
+  }
   return state;
 };
 
