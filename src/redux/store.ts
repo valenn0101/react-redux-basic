@@ -41,6 +41,7 @@ const reducerManager = (state = initialState, action: any) => {
       return {
         ...state,
         starters: state.starters.filter(
+          // @ts-ignore
           player => player.id !== action.payload.id
         ),
         players: [...state.players, action.payload],
@@ -49,6 +50,7 @@ const reducerManager = (state = initialState, action: any) => {
       return {
         ...state,
         substitutes: state.substitutes.filter(
+          // @ts-ignore
           player => player.id !== action.payload.id
         ),
         players: [...state.players, action.payload],
@@ -59,5 +61,6 @@ const reducerManager = (state = initialState, action: any) => {
 };
 
 export default configureStore({
+  // @ts-ignore
   reducer: reducerManager,
 });
