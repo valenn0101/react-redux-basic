@@ -10,12 +10,12 @@ type PlayersProps = {
   subtitutes: Player[];
 };
 
-const Subtitutes: React.FC<PlayersProps> = ({ subtitutes }) => {
+const Subtitutes: React.FC<PlayersProps> = ({ substitutes }) => {
   return (
     <section>
       <h2>Subtitutes</h2>
       <div className="bench">
-        {subtitutes.map(player => (
+        {substitutes.map(player => (
           <article key={player.id} className="subtitutes">
             <div>
               <img src={player.photo} alt={player.name} />
@@ -31,7 +31,7 @@ const Subtitutes: React.FC<PlayersProps> = ({ subtitutes }) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    subtitutes: state.players,
+    substitutes: state.substitutes,
   };
 };
 

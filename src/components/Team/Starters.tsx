@@ -31,7 +31,7 @@ const Starters: React.FC<PlayersProps> = ({ starters }) => {
 
 const mapStateToProps = (state: any) => {
   return {
-    starters: state.players,
+    starters: state.starters,
   };
 };
 
