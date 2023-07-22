@@ -1,6 +1,16 @@
 import { connect } from "react-redux";
 
-const Players = ({ players }) => {
+type Player = {
+  id: number;
+  name: string;
+  photo: string;
+};
+
+type PlayersProps = {
+  players: Player[];
+};
+
+const Players: React.FC<PlayersProps> = ({ players }) => {
   return (
     <section>
       <h2>Players</h2>
@@ -20,7 +30,7 @@ const Players = ({ players }) => {
   );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     players: state.players,
   };
